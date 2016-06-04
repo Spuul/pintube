@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+chocolate:
+  url: https://youtu.be/EwTZ2xpQwpA?list=LLqqGvuVycgY7ZC3ORaF40rA
+  yt_data:
+  status: 0
+  tags: music, youtube
+
+nooo_daaamn:
+  url: https://youtu.be/OIvX8g220Ls?list=FLqqGvuVycgY7ZC3ORaF40rA
+  yt_data:
+  status: 0
+  tags: dance, hiphop
+
+macbook:
+  url: https://youtu.be/KHZ8ek-6ccc?list=FLqqGvuVycgY7ZC3ORaF40rA
+  yt_data:
+  status: 0
+  tags: parody, comedy
