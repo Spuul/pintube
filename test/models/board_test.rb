@@ -7,7 +7,4 @@ class BoardTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name)
 
-  def test_model_setup
-
-  end
 end

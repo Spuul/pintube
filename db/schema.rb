@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20160604145428) do
   end
 
   create_table "boards_videos", id: false, force: :cascade do |t|
-    t.integer "board_id"
-    t.integer "video_id"
+    t.integer "board_id", null: false
+    t.integer "video_id", null: false
   end
 
   add_index "boards_videos", ["board_id"], name: "index_boards_videos_on_board_id"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160604145428) do
     t.string   "url",                    null: false
     t.text     "yt_data"
     t.integer  "status",     default: 0
-    t.string   "tags"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
