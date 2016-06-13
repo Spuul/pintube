@@ -1,0 +1,18 @@
+%h1 New Video
+
+- if @video.title
+
+  %h2= @video.title
+
+  = image_tag @video.thumbnail_url
+
+  %p= @video.description
+
+  = form_for @video do |f|
+    -#= f.text_field :note
+    = f.hidden_field :url
+    -#@todo add board selection
+    = f.submit 'Add Video'
+
+- else
+  .alert.alert-warning Couldn't retrieve video data for url: #{@video.url}. Try again with another URL.

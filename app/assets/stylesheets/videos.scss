@@ -1,3 +1,19 @@
 // Place all the styles related to the videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.videos-row {
+  display: flex;
+  flex-direction: row
+}
+
+.video {
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid #808080;
+}
+
+.video-desc {
+  white-space: pre-wrap;
+  font-size: 90%;
+}

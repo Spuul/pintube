@@ -1,0 +1,25 @@
+- @videos.in_groups_of(3).each do |group|
+  .videos-row
+    - group.each do |video|
+      - break unless video
+      .video{id: dom_id(video)}
+        %h4.video-title= video.title
+
+        = image_tag video.thumbnail_url
+
+        %p= truncate video.description, length: 80
+
+        .links
+          = link_to('Details', 'javascript:void(0)', class: 'open-details', data: {video_id: video.id})
+          = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'confirm?' })
+
+
+-# Our modal dialog to display a single video
+#modal.bootstrap-modal.modal.fade(tabindex="-1" )
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(data-dismiss="modal")
+        %h4.modal-title.video-title
+      .modal-body
+

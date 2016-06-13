@@ -44,4 +44,10 @@ class VideoTest < ActiveSupport::TestCase
     vid.url = nil
     assert_equal 'OIvX8g220Ls', vid.yt_id
   end
+
+  def test_other_methods
+    vid = videos :nooo_daaamn
+
+    assert_equal 'http://www.youtube-nocookie.com/embed/OIvX8g220Ls?rel=0', vid.embed_url
+  end
 end

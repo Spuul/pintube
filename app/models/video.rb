@@ -10,7 +10,7 @@ class Video < ActiveRecord::Base
 
   # Behaviours =====================================================================
   enum status: [:watched, :faved]
-  store :yt_data, coder: JSON #, accessors: [ :color, :homepage ]
+  serialize :yt_data, JSON
 
   # Callbacks ======================================================================
 
@@ -19,41 +19,44 @@ class Video < ActiveRecord::Base
   validates_uniqueness_of :url
 
 
-  ###### Youtube data Interface
-  # for now, we interface with the Youtube response data.
+  # Youtube data Interface =========================================================
+  # For now, we interface with the Youtube response data.
   # In the future, as needed (speed or searchability), we can convert data to full-blown attributes
 
-  def set_yt_data data
+  def add_yt_data data
+    # Currently we don't do any processing on the data (future proofing)
     self.yt_data = data
   end
 
   def yt_id
-    yt_data.try(:fetch, 'id') do
-      Regexp.last_match[1] if url && url.match(YT_URL_VIDEO_ID_REGEX)
-    end
+    yt_data.try(:fetch, 'id') || extract_yt_id_from_url
   end
 
   def title
-    yt_data_hash['title']
+    yt_snippet_data['title']
   end
   def description
-    yt_data_hash['description']
+    yt_snippet_data['description']
   end
   def tags
-    yt_data_hash['tags']
+    yt_snippet_data['tags']
   end
   # etc...
-  def thumbnail_url
-    # we can replace this ugly try chain with dig under ruby 2.3
-    #@todo? expose thumbnail size
-    yt_data_hash.try(:[], 'thumbnails').try(:[], 'medium').try(:[], 'url')
+  def thumbnail_url(quality: 'medium')
+    yt_snippet_data.dig('thumbnails', quality, 'url')
   end
 
+  def embed_url
+    "http://www.youtube-nocookie.com/embed/#{yt_id}?rel=0"
+  end
 
   private
 
-  def yt_data_hash
-    yt_data.try(:fetch, 'snippet', {})
+  def yt_snippet_data
+    yt_data.try(:fetch, 'snippet') || {}
   end
 
+  def extract_yt_id_from_url
+    Regexp.last_match[1] if url && url.match(YT_URL_VIDEO_ID_REGEX)
+  end
 end

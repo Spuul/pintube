@@ -44,4 +44,74 @@ class RetrieveYoutubeDataTest < ActiveSupport::TestCase
 end
 
 # Sample response (6.6.16)
-#   {"kind"=>"youtube#videoListResponse", "etag"=>"\"mie-I9wWQF7ndS7wC10DLBkzLlg/wy-5vyvDb4pWe8WUBDylMLZXb0A\"", "pageInfo"=>{"totalResults"=>1, "resultsPerPage"=>1}, "items"=>[{"kind"=>"youtube#video", "etag"=>"\"mie-I9wWQF7ndS7wC10DLBkzLlg/9mUZ8kHtgbhgF_bE7tvzCd6uPt8\"", "id"=>"KHZ8ek-6ccc", "snippet"=>{"publishedAt"=>"2015-03-11T17:29:20.000Z", "channelId"=>"UCXzySgo3V9KysSfELFLMAeA", "title"=>"Apple Engineer Talks about the New 2015 Macbook", "description"=>"an Apple engineer explains how they developed the new 2015 Macbook and the day Tim Cook saw it for the first time.\n\nOriginal Source: Risitas y las paelleras: https://youtu.be/cDphUib5iG4\n\n-----------------\n\nTo get the latest on my work follow me on G+ Instagram or Twitter\n\nGoogle+ - http://gplus.to/wicked4u2c\nInstagram - http://instagram.com/mobileg33k\nFollow me on Twitter - http://twitter.com/Wicked4u2c", "thumbnails"=>{"default"=>{"url"=>"https://i.ytimg.com/vi/KHZ8ek-6ccc/default.jpg", "width"=>120, "height"=>90}, "medium"=>{"url"=>"https://i.ytimg.com/vi/KHZ8ek-6ccc/mqdefault.jpg", "width"=>320, "height"=>180}, "high"=>{"url"=>"https://i.ytimg.com/vi/KHZ8ek-6ccc/hqdefault.jpg", "width"=>480, "height"=>360}, "standard"=>{"url"=>"https://i.ytimg.com/vi/KHZ8ek-6ccc/sddefault.jpg", "width"=>640, "height"=>480}, "maxres"=>{"url"=>"https://i.ytimg.com/vi/KHZ8ek-6ccc/maxresdefault.jpg", "width"=>1280, "height"=>720}}, "channelTitle"=>"Armando Ferreira", "tags"=>["Apple", "2015 Macbook", "Macbook", "Apple Inc. (Publisher)", "Tim Cook", "Steve Jobs", "MacBook Pro (Computer)", "Retina", "Risitas", "Engineer", "Apple Engineer", "Comedy", "Viral", "Funny"], "categoryId"=>"28", "liveBroadcastContent"=>"none", "localized"=>{"title"=>"Apple Engineer Talks about the New 2015 Macbook", "description"=>"an Apple engineer explains how they developed the new 2015 Macbook and the day Tim Cook saw it for the first time.\n\nOriginal Source: Risitas y las paelleras: https://youtu.be/cDphUib5iG4\n\n-----------------\n\nTo get the latest on my work follow me on G+ Instagram or Twitter\n\nGoogle+ - http://gplus.to/wicked4u2c\nInstagram - http://instagram.com/mobileg33k\nFollow me on Twitter - http://twitter.com/Wicked4u2c"}}}]}
+# {
+# "kind" => "youtube#videoListResponse",
+#     "etag" => "\"mie-I9wWQF7ndS7wC10DLBkzLlg/1Hhkdan3ZM2Rx5TU8rKV8ibQZIw\"",
+#     "pageInfo" => {
+#     "totalResults" => 1,
+#     "resultsPerPage" => 1
+# },
+#     "items" => [
+#     [0] {
+#     "kind" => "youtube#video",
+#     "etag" => "\"mie-I9wWQF7ndS7wC10DLBkzLlg/okaVZsQkDgSsvBMGF35JjIlutsI\"",
+#     "id" => "KHZ8ek-6ccc",
+#     "snippet" => {
+#         "publishedAt" => "2015-03-11T17:29:20.000Z",
+#         "channelId" => "UCXzySgo3V9KysSfELFLMAeA",
+#         "title" => "Apple Engineer Talks about the New 2015 Macbook",
+#         "description" => "an Apple engineer explains how they developed the new 2015 Macbook and the day Tim Cook saw it for the first time.\n\nOriginal Source: Risitas y las paelleras: https://youtu.be/cDphUib5iG4\n\n-----------------\n\nTo get the latest on my work follow me on G+ Instagram or Twitter\n\nGoogle+ - http://gplus.to/wicked4u2c\nInstagram - http://instagram.com/mobileg33k\nFollow me on Twitter - http://twitter.com/Wicked4u2c",
+#         "thumbnails" => {
+#             "default" => {
+#                 "url" => "https://i.ytimg.com/vi/KHZ8ek-6ccc/default.jpg",
+#                 "width" => 120,
+#                 "height" => 90
+#             },
+#             "medium" => {
+#                 "url" => "https://i.ytimg.com/vi/KHZ8ek-6ccc/mqdefault.jpg",
+#                 "width" => 320,
+#                 "height" => 180
+#             },
+#             "high" => {
+#                 "url" => "https://i.ytimg.com/vi/KHZ8ek-6ccc/hqdefault.jpg",
+#                 "width" => 480,
+#                 "height" => 360
+#             },
+#             "standard" => {
+#                 "url" => "https://i.ytimg.com/vi/KHZ8ek-6ccc/sddefault.jpg",
+#                 "width" => 640,
+#                 "height" => 480
+#             },
+#             "maxres" => {
+#                 "url" => "https://i.ytimg.com/vi/KHZ8ek-6ccc/maxresdefault.jpg",
+#                 "width" => 1280,
+#                 "height" => 720
+#             }
+#         },
+#         "channelTitle" => "Armando Ferreira",
+#         "tags" => [
+#             [ 0] "Apple",
+#     [ 1] "2015 Macbook",
+#     [ 2] "Macbook",
+#     [ 3] "Apple Inc. (Publisher)",
+#     [ 4] "Tim Cook",
+#     [ 5] "Steve Jobs",
+#     [ 6] "MacBook Pro (Computer)",
+#     [ 7] "Retina",
+#     [ 8] "Risitas",
+#     [ 9] "Engineer",
+#     [10] "Apple Engineer",
+#     [11] "Comedy",
+#     [12] "Viral",
+#     [13] "Funny"
+# ],
+#     "categoryId" => "28",
+#     "liveBroadcastContent" => "none",
+#     "localized" => {
+#     "title" => "Apple Engineer Talks about the New 2015 Macbook",
+#     "description" => "an Apple engineer explains how they developed the new 2015 Macbook and the day Tim Cook saw it for the first time.\n\nOriginal Source: Risitas y las paelleras: https://youtu.be/cDphUib5iG4\n\n-----------------\n\nTo get the latest on my work follow me on G+ Instagram or Twitter\n\nGoogle+ - http://gplus.to/wicked4u2c\nInstagram - http://instagram.com/mobileg33k\nFollow me on Twitter - http://twitter.com/Wicked4u2c"
+# }
+# }
+# }
+# ]
+# }
