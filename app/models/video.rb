@@ -1,5 +1,4 @@
 class Video < ActiveRecord::Base
-  #@todo add yt_id as an attribute to quickly detect duplicate in case a different url for the same video is submitted
 
   # src: http://stackoverflow.com/a/6557092/178266
   YT_URL_VIDEO_ID_REGEX = /(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
@@ -11,15 +10,14 @@ class Video < ActiveRecord::Base
   scope :default_order, ->{ order created_at: :desc }
 
   # Behaviours =====================================================================
-  enum status: [:watched, :faved] # pool from YT directly?
   serialize :yt_data, JSON
 
   # Callbacks ======================================================================
 
   # Validations ====================================================================
   validates_presence_of :url
-  validates_uniqueness_of :url
 
+  validates :yt_id, presence: true, uniqueness: true
 
   # Youtube data Interface =========================================================
   # For now, we interface with the Youtube response data.
@@ -28,10 +26,11 @@ class Video < ActiveRecord::Base
   def add_yt_data data
     # Currently we don't do any processing on the data (future proofing)
     self.yt_data = data
+    self.yt_id = yt_data.try(:fetch, 'id') # we set the yt_id once yt confirmed it
   end
 
   def yt_id
-    yt_data.try(:fetch, 'id') || extract_yt_id_from_url
+    read_attribute(:yt_id) || extract_yt_id_from_url
   end
 
   def title

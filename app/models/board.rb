@@ -8,6 +8,7 @@ class Board < ActiveRecord::Base
   # Behaviours =====================================================================
 
   # Callbacks ======================================================================
+  before_save {|b| b.name = b.name.squish.titleize}
 
   # Validations ====================================================================
   validates_presence_of :name

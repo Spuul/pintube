@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
     else
       flash['danger']  = "Failed updating board #{@board.name}: #{@board.errors.full_messages.join(', ')}."
     end
-    redirect_to root_path
+    redirect_to root_path(current_board_id: @board)
   end
 
   def destroy

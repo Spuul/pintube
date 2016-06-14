@@ -1,6 +1,8 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :update, :destroy]
 
+  #@todo keep current board id in session
+
   def index
     @current_board = Board.find_by id: params[:current_board_id]
 
@@ -8,7 +10,7 @@ class VideosController < ApplicationController
                 @current_board.videos
               else
                 Video.all
-              end.default_order
+              end.default_order.to_a
   end
 
   def show
@@ -22,14 +24,15 @@ class VideosController < ApplicationController
   def new
     @video = Video.new url: params[:video_url]
 
-    redirect_to root_path, flash: {warning: "Video already exists."} and return if Video.where(url: @video.url).exists?
-
     begin
       @video.add_yt_data RetrieveYoutubeData.new(@video.yt_id).call
     rescue ArgumentError => e
-      redirect_to videos_path, flash: {warning: "Couldn't add the video with URL: #{@video.url}"}
+      redirect_to root_path, flash: {warning: "Couldn't add the video with URL: #{@video.url}"} and return
     end
-
+    # The following could be placed before we call yt but here, we have a confirmation that the yt_id is valid
+    if (duplicate = Video.find_by(yt_id: @video.yt_id))
+      redirect_to root_path, flash: {warning: "Video already added (#{duplicate.title})."} and return
+    end
   end
 
   def create
@@ -45,15 +48,16 @@ class VideosController < ApplicationController
 
   def update
     if @video.update_attributes(video_params)
-      redirect_to root_path
+      flash['success'] = 'Video updated.'
     end
+    redirect_to root_path
   end
 
   def destroy
     set_video
 
     if @video.destroy
-      flash['success']  = 'Video deleted.'
+      flash['success'] = 'Video deleted.'
     else
       flash['warning'] = 'Couldn\'t delete video.'
     end

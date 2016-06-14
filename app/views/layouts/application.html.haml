@@ -21,7 +21,7 @@
       .nav-bar-container
         .board_forms.navbar-form
           = form_tag root_path, method: :get do
-            Current Board
+            Choose Board
             = select_tag :current_board_id, options_from_collection_for_select(Board.all, :id, :name, params[:current_board_id]), include_blank: '- All Videos -'
 
           = form_for Board.new do |f|

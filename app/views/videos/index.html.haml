@@ -1,21 +1,27 @@
 
 = render :partial => 'board_header'
 
-- @videos.in_groups_of(3).each do |group|
-  .videos-row
-    - group.each do |video|
-      - break unless video
-      .video{id: dom_id(video)}
-        %h4.video-title= video.title
+- if @videos.any?
 
-        = image_tag video.thumbnail_url
+  - @videos.in_groups_of(3).each do |group|
 
-        %p= truncate video.description, length: 80
+    .videos-row
 
-        .links
-          = link_to('Details', 'javascript:void(0)', class: 'open-details', data: {video_id: video.id})
-          = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'Do you really want to remove this video?' })
+      - group.each do |video|
+        - break unless video
 
+        .video{id: dom_id(video)}
+
+          %h4.video-title= video.title
+          = image_tag video.thumbnail_url
+          %p= truncate video.description, length: 80
+          .links
+            = link_to('Details', 'javascript:void(0)', class: 'open-details', data: {video_id: video.id})
+            = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'Do you really want to remove this video?' })
+
+- else
+
+  .alert.alert-info= no_videos_message
 
 -# Our modal dialog to display a single video
 #modal.bootstrap-modal.modal.fade(tabindex="-1" )

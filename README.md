@@ -1,4 +1,9 @@
-# PinTube
+
+# Configuration
+* See the secrets.yml file to set your Youtube API key (either edit the file or set the env variable)
+
+
+# PinTube (Requirements)
 
 A simple rails web app that enables user to add a personal collection of favourite youtube videos. It's a like a Pinterest for YouTube videos.
 

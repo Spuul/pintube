@@ -11,6 +11,10 @@
   padding: 1em;
   margin: 1em;
   border: 1px solid #808080;
+
+  //&.watched {
+  //  opacity: 0.6;
+  //}
 }
 
 .video-desc {
@@ -20,8 +24,5 @@
 
 .assign-boards {
   padding-bottom: 0.5em;
-
-  .new_video & {
-    padding-top: 0.5em;
-  }
+  padding-top: 0.5em;
 }

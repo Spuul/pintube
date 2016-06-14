@@ -12,4 +12,10 @@ class BoardTest < ActiveSupport::TestCase
     assert Board.default_order.each_cons(2).all?{|a,b| a.name <= b.name}
   end
 
+  def test_callbacks
+    b = Board.new name: ' fe  esse '
+    b.save!
+    assert_equal 'Fe Esse', b.name
+  end
+
 end

@@ -1,9 +1,6 @@
 class RetrieveYoutubeData
 
-  #@todo extract url endpoint / API key
-
   YT_VIDEO_ENDPOINT     = 'https://www.googleapis.com/youtube/v3/videos'
-  YT_API_KEY            = 'AIzaSyACXu_h4CE5xxJkn-1N-2U14I7KYtNSOGQ'
   CACHE_NAMESPACE       = 'yt_video_api'
 
   def initialize video_id
@@ -27,8 +24,12 @@ class RetrieveYoutubeData
 
   private
   def yt_api_call
-    raw_response = RestClient.get YT_VIDEO_ENDPOINT,
-                                  params: {key: YT_API_KEY, part: 'snippet', id: @video_id}
+    raw_response = RestClient.get YT_VIDEO_ENDPOINT, params:
+        {
+            key: Rails.application.secrets.youtube_api_key,
+            part: 'snippet',
+            id: @video_id
+        }
     JSON.parse raw_response
   end
 end

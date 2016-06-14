@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20160604145428) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "boards", ["name"], name: "index_boards_on_name"
+
   create_table "boards_videos", id: false, force: :cascade do |t|
     t.integer "board_id", null: false
     t.integer "video_id", null: false
@@ -28,11 +30,14 @@ ActiveRecord::Schema.define(version: 20160604145428) do
   add_index "boards_videos", ["video_id"], name: "index_boards_videos_on_video_id"
 
   create_table "videos", force: :cascade do |t|
-    t.string   "url",                    null: false
+    t.string   "url",        null: false
     t.text     "yt_data"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "yt_id",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "videos", ["created_at"], name: "index_videos_on_created_at"
+  add_index "videos", ["yt_id"], name: "index_videos_on_yt_id"
 
 end
