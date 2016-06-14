@@ -18,7 +18,7 @@ class RetrieveYoutubeData
     # ap response
 
     if response['items'].empty?
-      raise 'Invalid ID'
+      raise ArgumentError, 'Not found'
     else
       response['items'].first
     end

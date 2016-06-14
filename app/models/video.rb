@@ -1,4 +1,5 @@
 class Video < ActiveRecord::Base
+  #@todo add yt_id as an attribute to quickly detect duplicate in case a different url for the same video is submitted
 
   # src: http://stackoverflow.com/a/6557092/178266
   YT_URL_VIDEO_ID_REGEX = /(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
@@ -7,9 +8,10 @@ class Video < ActiveRecord::Base
   has_and_belongs_to_many :boards
 
   # Scopes =========================================================================
+  scope :default_order, ->{ order created_at: :desc }
 
   # Behaviours =====================================================================
-  enum status: [:watched, :faved]
+  enum status: [:watched, :faved] # pool from YT directly?
   serialize :yt_data, JSON
 
   # Callbacks ======================================================================

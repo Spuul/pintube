@@ -1,5 +1,11 @@
-
-
 %iframe(width="560" height="315" frameborder="0" allowfullscreen ){src: @video.embed_url}
+
+- if @boards.any?
+  .assign-boards
+    = form_for @video do |f|
+
+      = render 'board_checkboxes', f: f
+
+      = f.submit 'Assign', class: 'btn btn-default btn-sm'
 
 %p.video-desc= @video.description

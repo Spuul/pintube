@@ -1,0 +1,9 @@
+- if @current_board
+  %h2= @current_board.name
+
+  = form_for @current_board do |f|
+
+    = f.text_field :name
+    = f.submit 'Rename'
+
+    = link_to 'Delete board', board_path(@current_board), title: 'Delete', method: :delete, data: { confirm: 'Do you really want to remove this board?' }

@@ -19,8 +19,18 @@
     height: 4em;
 }
 
+.flash.alert {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+
 .nav-bar-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.board_forms form {
+    display: inline-block;
 }

@@ -24,3 +24,6 @@ module Pintube
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+# Opens in Rubymine
+BetterErrors.editor='x-mine://open?file=%{file}&line=%{line}' if defined?(BetterErrors)

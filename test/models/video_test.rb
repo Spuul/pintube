@@ -7,6 +7,11 @@ class VideoTest < ActiveSupport::TestCase
   should validate_presence_of(:url)
   should validate_uniqueness_of(:url)
 
+  def test_scopes
+    ordered_videos = Video.default_order
+    assert_equal videos(:nooo_daaamn), ordered_videos.first
+    assert_equal videos(:macbook), ordered_videos.last
+  end
 
   def test_yt_data
     vid = videos :nooo_daaamn

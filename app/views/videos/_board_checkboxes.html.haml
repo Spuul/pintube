@@ -1,0 +1,4 @@
+Assign to board(s):
+
+= f.collection_check_boxes :board_ids, @boards || Board.default_order, :id, :name do |b|
+  = b.label(class: 'checkbox-inline') { b.check_box + b.text }

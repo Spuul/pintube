@@ -2,12 +2,18 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :update, :destroy]
 
   def index
-    @videos = Video.all
+    @current_board = Board.find_by id: params[:current_board_id]
+
+    @videos = if @current_board
+                @current_board.videos
+              else
+                Video.all
+              end.default_order
   end
 
   def show
     set_video
-    @boards = Board.all
+    @boards = Board.default_order
 
     render layout: nil
   end
@@ -15,7 +21,15 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new url: params[:video_url]
-    @video.add_yt_data RetrieveYoutubeData.new(@video.yt_id).call
+
+    redirect_to root_path, flash: {warning: "Video already exists."} and return if Video.where(url: @video.url).exists?
+
+    begin
+      @video.add_yt_data RetrieveYoutubeData.new(@video.yt_id).call
+    rescue ArgumentError => e
+      redirect_to videos_path, flash: {warning: "Couldn't add the video with URL: #{@video.url}"}
+    end
+
   end
 
   def create
@@ -23,9 +37,9 @@ class VideosController < ApplicationController
     @video.add_yt_data RetrieveYoutubeData.new(@video.yt_id).call
 
     if @video.save
-      redirect_to root_path, notice: 'Video added.'
+      redirect_to root_path, flash: {success: 'Video added.'}
     else
-      redirect_to root_path,  alert: "Video couldn't be added: #{@video.errors.full_messages.join(', ')}"
+      redirect_to root_path, flash: {warning: "Video couldn't be added: #{@video.errors.full_messages.join(', ')}."}
     end
   end
 
@@ -39,9 +53,9 @@ class VideosController < ApplicationController
     set_video
 
     if @video.destroy
-      flash.notice  = 'Video deleted.'
+      flash['success']  = 'Video deleted.'
     else
-      flash.warning = 'Couldn\'t delete video.'
+      flash['warning'] = 'Couldn\'t delete video.'
     end
     redirect_to root_path
   end

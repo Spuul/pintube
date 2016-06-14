@@ -17,3 +17,11 @@
   white-space: pre-wrap;
   font-size: 90%;
 }
+
+.assign-boards {
+  padding-bottom: 0.5em;
+
+  .new_video & {
+    padding-top: 0.5em;
+  }
+}

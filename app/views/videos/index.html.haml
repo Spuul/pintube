@@ -1,3 +1,6 @@
+
+= render :partial => 'board_header'
+
 - @videos.in_groups_of(3).each do |group|
   .videos-row
     - group.each do |video|
@@ -11,7 +14,7 @@
 
         .links
           = link_to('Details', 'javascript:void(0)', class: 'open-details', data: {video_id: video.id})
-          = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'confirm?' })
+          = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'Do you really want to remove this video?' })
 
 
 -# Our modal dialog to display a single video
