@@ -1,6 +1,7 @@
-
 # Configuration
 * See the secrets.yml file to set your Youtube API key (either edit the file or set the env variable)
+* Displays well in Chrome and Firefox (Images overflow in flex items with Safari)
+* Poltergeist Installation: https://github.com/teampoltergeist/poltergeist/tree/v1.9.0
 
 
 # PinTube (Requirements)
@@ -10,7 +11,7 @@ A simple rails web app that enables user to add a personal collection of favouri
 This application is designed to gauge our applicant's:
 - adherence to best practices
 - familiarity with code patterns
-- ability to write tests and documentation, and
+- ability to write tests, and
 - command of Ruby and Rails as a whole
 
 ## App Specifications:

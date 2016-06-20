@@ -2,9 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.videos-row {
+.videos_row {
   display: flex;
-  flex-direction: row
+
+  //-webkit-flex-direction: row
 }
 
 .video {
@@ -12,17 +13,35 @@
   margin: 1em;
   border: 1px solid #808080;
 
+  background-color: white;
+  box-shadow: 0 4px 8px 0 #888888;
+
+  //max-width: 30%;
+  //-webkit-flex:1 0 auto;
+
+  //flex-basis: 40%;
+  //-webkit-flex-grow: 1;
+  flex-shrink: 1;
+
+
   //&.watched {
   //  opacity: 0.6;
   //}
 }
 
-.video-desc {
+.new_video_title {
+  margin-top: 0;
+}
+.video_desc {
   white-space: pre-wrap;
   font-size: 90%;
 }
+.video_desc_header {
+  margin-bottom: 0;
+}
 
-.assign-boards {
+
+.assign_boards {
   padding-bottom: 0.5em;
   padding-top: 0.5em;
 }

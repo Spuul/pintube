@@ -1,10 +1,10 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :update, :destroy]
 
-  #@todo keep current board id in session
 
   def index
-    @current_board = Board.find_by id: params[:current_board_id]
+    session[:current_board_id] = params[:current_board_id] if params[:current_board_id]
+    set_current_board
 
     @videos = if @current_board
                 @current_board.videos
@@ -23,16 +23,19 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new url: params[:video_url]
+    @video.boards << @current_board if set_current_board
 
     begin
       @video.add_yt_data RetrieveYoutubeData.new(@video.yt_id).call
     rescue ArgumentError => e
-      redirect_to root_path, flash: {warning: "Couldn't add the video with URL: #{@video.url}"} and return
+      flash.now[:warning] = "Couldn't add the video with URL: #{@video.url}"
     end
     # The following could be placed before we call yt but here, we have a confirmation that the yt_id is valid
-    if (duplicate = Video.find_by(yt_id: @video.yt_id))
-      redirect_to root_path, flash: {warning: "Video already added (#{duplicate.title})."} and return
+    if flash.now[:warning].nil? && (duplicate = Video.find_by(yt_id: @video.yt_id))
+      flash.now[:warning] = "Video already added (#{duplicate.title})."
     end
+
+    render layout: nil
   end
 
   def create
@@ -74,5 +77,8 @@ class VideosController < ApplicationController
 
   def set_video
     @video = Video.find params[:id]
+  end
+  def set_current_board
+    @current_board = Board.find_by(id: session[:current_board_id])
   end
 end

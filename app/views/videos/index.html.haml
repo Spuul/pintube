@@ -5,7 +5,7 @@
 
   - @videos.in_groups_of(3).each do |group|
 
-    .videos-row
+    .videos_row
 
       - group.each do |video|
         - break unless video
@@ -20,15 +20,15 @@
             = link_to('Delete video', video_path(video), title: 'Delete', method: :delete, data: { confirm: 'Do you really want to remove this video?' })
 
 - else
-
   .alert.alert-info= no_videos_message
 
--# Our modal dialog to display a single video
+
+-# Our modal dialog to display a single video or add a new one
 #modal.bootstrap-modal.modal.fade(tabindex="-1" )
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close(data-dismiss="modal")
+        %button.close(data-dismiss="modal" aria-hidden="true" )×
         %h4.modal-title.video-title
       .modal-body
 

@@ -1,8 +1,9 @@
-%h1 Add Video
 
-- if @video
+= render 'shared/flashes'
 
-  %h2= @video.title
+- if flash.now[:warning].nil?
+
+  %h3.new_video_title= @video.title
 
   = image_tag @video.thumbnail_url(quality: 'high')
 
@@ -10,14 +11,10 @@
 
     = f.hidden_field :url
 
-    .assign-boards
+    .assign_boards
       = render 'board_checkboxes', f: f
+
     = f.submit 'Add Video'
 
-    %h4 Description
-    %p.video-desc= @video.description
-
-- else
-  .alert.alert-warning Couldn't retrieve video data for url: #{@video.url}. Try again with another URL.
-
--#@todo display in dialog
+    %h4.video_desc_header Description
+    %p.video_desc= @video.description
