@@ -8,8 +8,10 @@ class BoardTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:name)
 
   def test_scopes
-    refute Board.all.each_cons(2).all?{|a,b| a.name <= b.name} # this makes sure it's not ordered by chance
-    assert Board.default_order.each_cons(2).all?{|a,b| a.name <= b.name}
+    compare_block = ->(a,b) { a.name <= b.name }
+    # this makes sure it's not ordered by chance
+    refute Board.all.each_cons(2).all?(&compare_block)
+    assert Board.default_order.each_cons(2).all?(&compare_block)
   end
 
   def test_callbacks

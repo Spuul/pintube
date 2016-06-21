@@ -23,15 +23,15 @@
           = form_tag root_path, method: :get do
             Choose Board
             = select_tag :current_board_id,
-              options_from_collection_for_select(Board.all, :id, :name, session[:current_board_id]),
+              options_from_collection_for_select(Board.default_order, :id, :name, session[:current_board_id]),
               include_blank: '- All Videos -'
 
           = form_for Board.new do |f|
             = f.text_field :name, placeholder: 'New board name'
             = submit_tag 'Create'
 
-        = form_tag new_video_path, method: :get, class: 'new_video navbar-form pull-right' do
-          New Video
+        = form_tag new_video_path, method: :get, id: 'add_video', class: 'navbar-form pull-right' do
+          Add Video
           = text_field_tag :video_url, nil, placeholder: 'Video URL eg youtu.be/sGE4HMvDe-Q'
           = submit_tag 'Add'
 

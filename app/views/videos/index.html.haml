@@ -12,7 +12,7 @@
 
         .video{id: dom_id(video)}
 
-          %h4.video-title= video.title
+          %h4.video_title= video.title
           = image_tag video.thumbnail_url
           %p= truncate video.description, length: 80
           .links
@@ -29,6 +29,6 @@
     .modal-content
       .modal-header
         %button.close(data-dismiss="modal" aria-hidden="true" )×
-        %h4.modal-title.video-title
+        %h4.modal-title
       .modal-body
 

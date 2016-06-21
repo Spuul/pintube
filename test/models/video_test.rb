@@ -8,9 +8,9 @@ class VideoTest < ActiveSupport::TestCase
   should validate_presence_of(:yt_id)
 
   def test_scopes
-    ordered_videos = Video.default_order
-    assert_equal videos(:nooo_daaamn), ordered_videos.first
-    assert_equal videos(:macbook), ordered_videos.last
+    compare_block = ->(a,b) { a.created_at >= b.created_at }
+    refute Video.all.each_cons(2).all?(&compare_block)
+    assert Video.default_order.each_cons(2).all?(&compare_block)
   end
 
   def test_validations
@@ -22,8 +22,8 @@ class VideoTest < ActiveSupport::TestCase
   def test_yt_data
     vid = videos :nooo_daaamn
     # attributes interface
-    assert_equal 'The Best Dance In the World;He Killed  I never seen before nooo daaamn', vid.title
-    assert_equal 'He Killed  I never seen before nooo daaamn', vid.description
+    assert_equal 'The Best Dance In the World;He Killed I never seen before nooo daaamn', vid.title
+    assert_equal 'He Killed I never seen before nooo daaamn', vid.description
     assert_nil vid.tags
     assert_equal 'https://i.ytimg.com/vi/OIvX8g220Ls/mqdefault.jpg', vid.thumbnail_url
 
@@ -62,13 +62,13 @@ class VideoTest < ActiveSupport::TestCase
     assert_equal 'OIvX8g220Ls', vid.yt_id
     # from DB
     vid = videos :chocolate
-    assert_nil vid.yt_data
+    vid.yt_data = nil
     assert_equal 'EwTZ2xpQwpA', vid.yt_id
   end
 
   def test_other_methods
     vid = videos :nooo_daaamn
 
-    assert_equal 'http://www.youtube-nocookie.com/embed/OIvX8g220Ls?rel=0', vid.embed_url
+    assert_equal 'http://www.youtube-nocookie.com/embed/OIvX8g220Ls?html5=1', vid.embed_url
   end
 end

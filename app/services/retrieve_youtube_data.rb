@@ -12,7 +12,6 @@ class RetrieveYoutubeData
     response = Rails.cache.fetch @video_id, expires_in: 5.minutes, namespace: CACHE_NAMESPACE do
       yt_api_call
     end
-    # ap response
 
     if response['items'].empty?
       raise ArgumentError, 'Not found'

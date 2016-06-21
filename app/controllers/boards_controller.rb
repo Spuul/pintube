@@ -30,7 +30,7 @@ class BoardsController < ApplicationController
     else
       flash['danger']  = "Failed deleted board #{@board.name}."
     end
-    redirect_to root_path
+    redirect_to root_path(current_board_id: '') # we clear the current board since it has been destroyed
   end
 
   private

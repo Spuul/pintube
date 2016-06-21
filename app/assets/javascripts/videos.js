@@ -9,7 +9,7 @@ $(document).on('ready page:load', function(event) {
 
         $.get('/videos/' + $(this).data('video-id'))
             .done(function(data) {
-                displayInDialog(link.closest('.video').find('.video-title').text(), data);
+                displayInDialog(link.closest('.video').find('.video_title').text(), data);
             })
             .fail(function (_jqXhr, _textStatus, errorThrown) {
                 displayAjaxError('Unexpected Error', errorThrown);
@@ -17,21 +17,21 @@ $(document).on('ready page:load', function(event) {
     });
 
 
-    // opens the modal dialog with the form to create a new video
-    $('form.new_video ').submit(function(event) {
+
+    // opens the modal dialog with a form to create a new video
+    $('form#add_video').submit(function(event) {
 
         var form = $(this);
         $.get('/videos/new', form.serialize())
             .done(function(data) {
-                console.log('success');
                 displayInDialog('Add Video', data);
             })
             .fail(function (_jqXhr, _textStatus, errorThrown) {
-                console.log('status:'+ _textStatus + '/' + _jqXhr.status);
                 displayAjaxError('Unexpected Error', errorThrown);
             });
         event.preventDefault();
     });
+
 
 
     // trigger a reload of videos belonging to the selected board 

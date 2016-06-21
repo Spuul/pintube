@@ -48,7 +48,7 @@ class Video < ActiveRecord::Base
   end
 
   def embed_url
-    "http://www.youtube-nocookie.com/embed/#{yt_id}?rel=0"
+    "http://www.youtube-nocookie.com/embed/#{yt_id}?html5=1"
   end
 
   private

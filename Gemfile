@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 ruby '~> 2.3.1'
-
+# For RVM autoselect:
+#ruby=ruby-2.3.1
+#ruby-gemset=pintube
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -59,6 +61,11 @@ group :test do
   gem 'shoulda-matchers'
 
   gem 'capybara'
+  gem 'capybara-webkit'
+
+  gem 'launchy'
+  gem 'database_cleaner'
+
 end
 
 group :development do
