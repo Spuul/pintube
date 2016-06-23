@@ -3,27 +3,20 @@
 chocolate:
   url: https://youtu.be/EwTZ2xpQwpA?list=LLqqGvuVycgY7ZC3ORaF40rA
   yt_id: EwTZ2xpQwpA
-#  status: 1
-#  tags: music, youtube
+#  yt_data:
 
 nooo_daaamn:
   url: https://youtu.be/OIvX8g220Ls?list=FLqqGvuVycgY7ZC3ORaF40rA
   yt_data: '{"kind":"youtube#video","etag":"\"mie-I9wWQF7ndS7wC10DLBkzLlg/x7i_ZQr0alCGtPoZRV2ztoejqhs\"","id":"OIvX8g220Ls","snippet":{"publishedAt":"2015-01-11T13:40:27.000Z","channelId":"UC0Zm6D7ZhHO3EgRQ88F01NQ","title":"The Best Dance In the World;He Killed I never seen before nooo daaamn","description":"He Killed I never seen before nooo daaamn","thumbnails":{"default":{"url":"https://i.ytimg.com/vi/OIvX8g220Ls/default.jpg","width":120,"height":90},"medium":{"url":"https://i.ytimg.com/vi/OIvX8g220Ls/mqdefault.jpg","width":320,"height":180},"high":{"url":"https://i.ytimg.com/vi/OIvX8g220Ls/hqdefault.jpg","width":480,"height":360}},"channelTitle":"D Max","categoryId":"10","liveBroadcastContent":"none","localized":{"title":"The Best Dance In the World;He Killed  I never seen before nooo daaamn","description":"He Killed  I never seen before nooo daaamn"}}}'
   created_at: <%= 2.seconds.from_now %>
-#  tags: dance, hiphop
-#  status: 0
 
 macbook:
   url: https://youtu.be/KHZ8ek-6ccc?list=FLqqGvuVycgY7ZC3ORaF40rA
   created_at: <%= 2.days.ago %>
 #  yt_data:
-#  status: 0
-#  tags: parody, comedy
 
 tenderlove:
   url: https://www.youtube.com/watch?v=xMFs9DTympQ
   yt_id: xMFs9DTympQ
   yt_data: '{"kind":"youtube#video","etag":"\"mie-I9wWQF7ndS7wC10DLBkzLlg/N9SJ8SpyW6PI-gTKnRGx5sLtHbI\"","id":"xMFs9DTympQ","snippet":{"publishedAt":"2016-05-13T16:58:29.000Z","channelId":"UCWnPjmqvljcafA0z2U1fwKQ","title":"RailsConf 2016 - Opening Day 3 Keynote","description":"Aaron was born","thumbnails":{"default":{"url":"https://i.ytimg.com/vi/xMFs9DTympQ/default.jpg","width":120,"height":90},"medium":{"url":"https://i.ytimg.com/vi/xMFs9DTympQ/mqdefault.jpg","width":320,"height":180},"high":{"url":"https://i.ytimg.com/vi/xMFs9DTympQ/hqdefault.jpg","width":480,"height":360},"standard":{"url":"https://i.ytimg.com/vi/xMFs9DTympQ/sddefault.jpg","width":640,"height":480},"maxres":{"url":"https://i.ytimg.com/vi/xMFs9DTympQ/maxresdefault.jpg","width":1280,"height":720}},"channelTitle":"Confreaks","tags":["rails","railsconf","ruby on rails","ruby","tenderlove"],"categoryId":"28","liveBroadcastContent":"none","defaultLanguage":"en"}}'
   created_at: <%= 3.days.ago %>
-
-#  status: 0

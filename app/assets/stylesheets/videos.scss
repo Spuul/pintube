@@ -4,44 +4,36 @@
 
 .videos_row {
   display: flex;
-
-  //-webkit-flex-direction: row
 }
 
 .video {
   padding: 1em;
-  margin: 1em;
-  border: 1px solid #808080;
+  margin:  1em;
 
+  border: 1px solid #808080;
   background-color: white;
   box-shadow: 0 4px 8px 0 #888888;
 
-  //max-width: 30%;
-  //-webkit-flex:1 0 auto;
-
-  //flex-basis: 40%;
-  //-webkit-flex-grow: 1;
   flex-shrink: 1;
+}
 
+.video_desc {
+  white-space: pre-wrap;
+  font-size: 90%;
+}
 
-  //&.watched {
-  //  opacity: 0.6;
-  //}
+.video_desc_header {
+  margin-bottom: 0;
 }
 
 .new_video_title {
   margin-top: 0;
 }
-.video_desc {
-  white-space: pre-wrap;
-  font-size: 90%;
-}
-.video_desc_header {
-  margin-bottom: 0;
-}
-
+//form.new_video {
+//  margin-top: 1em;
+//}
 
 .assign_boards {
   padding-bottom: 0.5em;
-  padding-top: 0.5em;
+  padding-top:    0.5em;
 }

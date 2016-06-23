@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RetrieveYoutubeDataTest < ActiveSupport::TestCase
 
-  #@todo
+  # @todo
   # To avoid hitting Youtube during testing,
   # be at the mercy of data changing
   # and test when the api is down, we can use:

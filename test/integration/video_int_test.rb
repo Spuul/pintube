@@ -20,13 +20,11 @@ class VideoIntTest < ActionDispatch::IntegrationTest
     assert_selector '.video', count: 2
     [:chocolate, :nooo_daaamn].each{|v| assert_selector "##{dom_id(videos(v))}" }
 
-
     # try without videos
     Video.delete_all
 
     visit root_path
     assert_selector '.alert-info', text: 'No videos on this board yet'
-
     select_board
     assert_selector '.alert-info', text: 'No videos added yet'
   end
@@ -43,7 +41,7 @@ class VideoIntTest < ActionDispatch::IntegrationTest
       click_button 'Add'
     end
     assert_selector '.modal-title', text: 'Add Video' # set by js
-    within MODAL_BODY_SELECTOR do
+    within MODAL_BODY do
 
       assert_selector '.new_video_title', text: title_snippet
       assert_selector '.video_desc', text: 'DHH'
@@ -55,7 +53,7 @@ class VideoIntTest < ActionDispatch::IntegrationTest
       end
 
     end
-    refute_selector MODAL_BODY_SELECTOR
+    refute_selector MODAL_BODY
     assert_selector '.alert-success', text: 'Video added.'
     assert_selector '.video .video_title', text: title_snippet
 
@@ -67,7 +65,7 @@ class VideoIntTest < ActionDispatch::IntegrationTest
       find('#video_url').set another_aaron_url
       click_button 'Add'
     end
-    within MODAL_BODY_SELECTOR do
+    within MODAL_BODY do
       assert_selector '.alert-warning', text: 'already added'
     end
     find(DISMISS_BUTTON).click
@@ -77,8 +75,20 @@ class VideoIntTest < ActionDispatch::IntegrationTest
       find('#video_url').set 'invalid'
       click_button 'Add'
     end
-    within MODAL_BODY_SELECTOR do
+    within MODAL_BODY do
       assert_selector '.alert-warning', text: "Couldn't add the video with URL"
+    end
+    find(DISMISS_BUTTON).click
+
+    # check note about no board created
+    Board.delete_all
+    Video.find_by!(url: another_aaron_url).destroy
+    within 'form#add_video' do
+      find('#video_url').set another_aaron_url
+      click_button 'Add'
+    end
+    within MODAL_BODY do
+      assert_selector 'strong', text: 'No boards created yet'
     end
 
   end
@@ -90,7 +100,7 @@ class VideoIntTest < ActionDispatch::IntegrationTest
     within("##{dom_id aaron_vid}") { click_link 'Details' }
     # check the dialog
     assert_selector '.modal-title', text: aaron_vid.title # set by js
-    within MODAL_BODY_SELECTOR do
+    within MODAL_BODY do
       assert_selector '.video_desc', text: aaron_vid.description
       # assigning boards
       within '.edit_video' do

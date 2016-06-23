@@ -13,8 +13,8 @@ end
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  # to use dom_id
-  include ActionView::RecordIdentifier
+
+  include ActionView::RecordIdentifier # to use dom_id() method in tests
 
   self.use_transactional_fixtures = false
 
@@ -22,19 +22,18 @@ class ActionDispatch::IntegrationTest
     visit root_path
   end
 
-  # Reset sessions and driver between tests
+  # Reset sessions
   # Use super wherever this method is redefined in your individual test classes
   def teardown
     Capybara.reset_sessions!
-    # Capybara.use_default_driver
   end
 
 
 
   #=  helpers  ===========================================
 
-  MODAL_BODY_SELECTOR = '.modal-body'
-  DISMISS_BUTTON = 'button.close'
+  MODAL_BODY = '.modal-body'
+  DISMISS_BUTTON      = 'button.close'
 
   def select_board name = '- All Videos -'
      select name, from: 'current_board_id', wait: 1

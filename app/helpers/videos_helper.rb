@@ -7,4 +7,5 @@ module VideosHelper
       'No videos added yet. Please add some with the form on the top right.'
     end
   end
+
 end

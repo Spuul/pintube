@@ -5,7 +5,6 @@ class Board < ActiveRecord::Base
 
   # Scopes =========================================================================
   scope :default_order, ->{ order(:name) }
-  # Behaviours =====================================================================
 
   # Callbacks ======================================================================
   before_validation {|b| b.name = b.name.squish.titleize if b.name}

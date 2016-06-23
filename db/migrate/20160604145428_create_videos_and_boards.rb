@@ -4,14 +4,12 @@ class CreateVideosAndBoards < ActiveRecord::Migration
     create_table :videos do |t|
 
       t.string :url, null: false
-
       t.text :yt_data
       t.string :yt_id, null: false, index: true
 
       t.timestamps null: false
     end
     add_index :videos, :created_at, order: {created_at: :desc}
-
 
 
 
@@ -22,7 +20,6 @@ class CreateVideosAndBoards < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :boards, :name, order: {name: :asc}
-
 
 
 

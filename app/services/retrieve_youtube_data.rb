@@ -21,11 +21,13 @@ class RetrieveYoutubeData
   end
 
 
+
   private
+
   def yt_api_call
     raw_response = RestClient.get YT_VIDEO_ENDPOINT, params:
         {
-            key: Rails.application.secrets.youtube_api_key,
+            key:  Rails.application.secrets.youtube_api_key,
             part: 'snippet',
             id: @video_id
         }

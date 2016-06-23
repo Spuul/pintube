@@ -12,19 +12,16 @@ class Video < ActiveRecord::Base
   # Behaviours =====================================================================
   serialize :yt_data, JSON
 
-  # Callbacks ======================================================================
-
   # Validations ====================================================================
   validates_presence_of :url
 
   validates :yt_id, presence: true, uniqueness: true
 
   # Youtube data Interface =========================================================
-  # For now, we interface with the Youtube response data.
-  # In the future, as needed (speed or searchability), we can convert data to full-blown attributes
+  # For now, we interface with the YouTube response data.
+  # In the future, as needed (speed or searchability), we can convert data to full-blown attributes with migrations
 
   def add_yt_data data
-    # Currently we don't do any processing on the data (future proofing)
     self.yt_data = data
     self.yt_id = yt_data.try(:fetch, 'id') # we set the yt_id once yt confirmed it
   end
@@ -51,6 +48,8 @@ class Video < ActiveRecord::Base
     "http://www.youtube-nocookie.com/embed/#{yt_id}?html5=1"
   end
 
+
+
   private
 
   def yt_snippet_data
@@ -58,6 +57,8 @@ class Video < ActiveRecord::Base
   end
 
   def extract_yt_id_from_url
-    Regexp.last_match[1] if url && url.match(YT_URL_VIDEO_ID_REGEX)
+    if url && url.match(YT_URL_VIDEO_ID_REGEX)
+      Regexp.last_match[1]
+    end
   end
 end

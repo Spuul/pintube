@@ -33,6 +33,8 @@ class BoardsController < ApplicationController
     redirect_to root_path(current_board_id: '') # we clear the current board since it has been destroyed
   end
 
+
+
   private
 
   def board_params

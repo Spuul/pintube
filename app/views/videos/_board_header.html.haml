@@ -1,6 +1,7 @@
 - if @current_board
   .board_header
     %h2.board_title Videos on #{@current_board.name}
+
     = form_for @current_board do |f|
 
       = f.text_field :name
