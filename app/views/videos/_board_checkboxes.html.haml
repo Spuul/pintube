@@ -1,0 +1,8 @@
+Assign to board(s):
+- if @boards.any?
+
+  = f.collection_check_boxes :board_ids, @boards, :id, :name do |b|
+    = b.label(class: 'checkbox-inline') { b.check_box + b.text }
+
+- else
+  %strong No boards created yet

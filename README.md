@@ -1,11 +1,33 @@
-# PinTube
+# Notes and Configuration
+* See the secrets.yml file to set your Youtube API key (either edit the file or set the env variable)
+* Displays well in Chrome and Firefox (images overflow in flex items with Safari...)
+* Capybara Webkit Driver Installation (for JS integration testing): https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+
+# Run the application
+Migrate the db (replace ? by the environment you want to run in: production or development)
+
+    RAILS_ENV=? bin/rake db:migrate
+
+Then run the server
+
+    bundle exec unicorn_rails -l 0.0.0.0:3000 -E ?
+
+For the production environment, you also need to compile the assets first with:
+
+    RAILS_ENV=production bin/rake assets:precompile
+
+Then point your browser (Firefox or Chrome) to
+
+    http://localhost:3000
+
+# PinTube (Requirements)
 
 A simple rails web app that enables user to add a personal collection of favourite youtube videos. It's a like a Pinterest for YouTube videos.
 
 This application is designed to gauge our applicant's:
 - adherence to best practices
 - familiarity with code patterns
-- ability to write tests and documentation, and
+- ability to write tests, and
 - command of Ruby and Rails as a whole
 
 ## App Specifications:

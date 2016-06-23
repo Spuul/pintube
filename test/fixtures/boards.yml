@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+music:
+  name: Music
+  videos: chocolate, nooo_daaamn
+
+misc:
+  name: Misc
+  videos: macbook, nooo_daaamn
+
+ruby:
+  name: Ruby
+  videos: tenderlove

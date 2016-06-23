@@ -1,0 +1,17 @@
+= render 'shared/flashes'
+
+- if flash.now[:warning].nil?
+
+  %h3.new_video_title= @video.title
+
+  = image_tag @video.thumbnail_url(quality: 'high')
+
+  = form_for @video do |f|
+    = f.hidden_field :url
+
+    .assign_boards= render 'board_checkboxes', f: f
+
+    = f.submit 'Add Video'
+
+  %h4.video_desc_header Description
+  %p.video_desc= @video.description
